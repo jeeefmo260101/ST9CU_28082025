@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi ZI Tambahan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+            color: #1e293b;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .card {
+            background-color: #f8fafc;
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        .card.active {
+            border-color: #0d9488;
+            background-color: #e0f2f1;
+        }
+        .info-panel {
+            display: none;
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background-color: #f0f9ff;
+            border-radius: 1rem;
+            border: 1px solid #cce8ff;
+        }
+        .info-panel.show {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .glow {
+            animation: glow 1.5s infinite alternate;
+        }
+        @keyframes glow {
+            from { box-shadow: 0 0 5px #0d9488, 0 0 10px #0d9488; }
+            to { box-shadow: 0 0 10px #0d9488, 0 0 20px #0d9488; }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+
+<div class="container">
+    <div class="text-center mb-10">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-teal-700 leading-tight">Materi Mendalam:<br>Pilar 6 & 3 Inisiatif ZI</h1>
+        <p class="mt-4 text-lg text-gray-600">Jelajahi detail program-program penting dari Buku Pintar ZI. Klik pada setiap kartu untuk info lebih lanjut!</p>
+    </div>
+
+    <!-- Cards Section -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Penghargaan Card -->
+        <div class="card" data-program="penghargaan">
+            <h3 class="text-xl font-bold text-teal-600">Penghargaan</h3>
+            <p class="text-gray-500 text-sm mt-1">Unit Penyelenggara Pelayanan Publik</p>
+        </div>
+
+        <!-- IKK 2024 Card -->
+        <div class="card" data-program="ikk-2024">
+            <h3 class="text-xl font-bold text-blue-600">IKK 2024</h3>
+            <p class="text-gray-500 text-sm mt-1">Nilai Indeks Kepuasan Konsumen</p>
+        </div>
+
+        <!-- Maturitas SPIP 2024 Card -->
+        <div class="card" data-program="spip-2024">
+            <h3 class="text-xl font-bold text-indigo-600">Maturitas SPIP 2024</h3>
+            <p class="text-gray-500 text-sm mt-1">Nilai Berdasarkan Dokumen</p>
+        </div>
+
+        <!-- Wajah Baru PST Card -->
+        <div class="card" data-program="wajah-pst">
+            <h3 class="text-xl font-bold text-green-600">Wajah Baru PST</h3>
+            <p class="text-gray-500 text-sm mt-1">Tujuan Pelayanan Statistik Terpadu</p>
+        </div>
+
+        <!-- Akses Dokumen ZI Card -->
+        <div class="card" data-program="akses-dokumen">
+            <h3 class="text-xl font-bold text-orange-600">Akses Dokumen ZI</h3>
+            <p class="text-gray-500 text-sm mt-1">Cara Mendapatkan Akses</p>
+        </div>
+    </div>
+
+    <!-- Info Panel Section -->
+    <div id="info-panel" class="info-panel">
+        <h2 id="info-title" class="text-2xl font-bold text-gray-800 mb-2"></h2>
+        <p id="info-description" class="text-gray-700"></p>
+        <div id="info-details" class="mt-4 border-l-4 border-gray-400 pl-4 space-y-2"></div>
+    </div>
+</div>
+
+<script>
+    const cards = document.querySelectorAll('.card');
+    const infoPanel = document.getElementById('info-panel');
+    const infoTitle = document.getElementById('info-title');
+    const infoDescription = document.getElementById('info-description');
+    const infoDetails = document.getElementById('info-details');
+
+    const programData = {
+        penghargaan: {
+            title: 'Penghargaan BPS Sumut',
+            description: 'Berdasarkan dokumen, BPS Provinsi Sumatera Utara mendapat penghargaan sebagai Unit Penyelenggara Pelayanan Publik kategori **"Pelayanan Prima"**.',
+            details: [
+                '**Pentingnya Penghargaan:** Penghargaan ini menunjukkan komitmen BPS Sumut dalam memberikan layanan terbaik kepada masyarakat dan merupakan salah satu capaian penting dalam Pembangunan ZI.'
+            ]
+        },
+        'ikk-2024': {
+            title: 'Nilai IKK Tahun 2024',
+            description: 'Indeks Kepuasan Konsumen (IKK) adalah ukuran kepuasan pengguna layanan terhadap kualitas pelayanan yang diberikan. Nilai ini menjadi salah satu indikator keberhasilan Pembangunan ZI.',
+            details: [
+                '**Nilai IKK Tahun 2024:** Berdasarkan dokumen, nilai IKK BPS Provinsi Sumatera Utara pada tahun 2024 adalah **97,58**.',
+                '**Perbandingan:** Nilai ini menunjukkan peningkatan dari tahun sebelumnya (95,66 di tahun 2023).'
+            ]
+        },
+        'spip-2024': {
+            title: 'Nilai Maturitas SPIP 2024',
+            description: 'Sistem Pengendalian Intern Pemerintah (SPIP) merupakan sistem yang mengukur efektivitas pengendalian internal instansi. Nilai maturitas SPIP juga menjadi tolok ukur penting dalam Pembangunan ZI.',
+            details: [
+                '**Nilai Maturitas SPIP Tahun 2024:** Berdasarkan dokumen, nilai maturitas SPIP BPS Provinsi Sumatera Utara pada tahun 2024 adalah **3,254**.',
+                '**Perbandingan:** Nilai ini mengalami kenaikan signifikan dari tahun 2023 (1,716).'
+            ]
+        },
+        'wajah-pst': {
+            title: 'Tujuan Wajah Baru Pelayanan Statistik Terpadu (PST)',
+            description: 'BPS Provinsi Sumatera Utara melakukan perombakan pada Pelayanan Statistik Terpadu (PST) untuk menciptakan pengalaman yang lebih baik bagi pengguna layanan.',
+            details: [
+                '**Tujuan Utama:** **Menciptakan suasana yang lebih humanis dan inklusif.**',
+                '**Manfaat Lain:** Peningkatan kenyamanan dan kualitas lingkungan layanan akan berdampak positif pada pengalaman masyarakat secara keseluruhan.'
+            ]
+        },
+        'akses-dokumen': {
+            title: 'Akses Dokumen Pembangunan ZI dan SK Tim',
+            description: 'Akses terhadap dokumen Pembangunan Zona Integritas (ZI) dan Surat Keputusan (SK) Tim ZI disediakan secara resmi bagi seluruh pegawai.',
+            details: [
+                '**Cara Akses:** Dokumen-dokumen tersebut dapat diakses **melalui tautan khusus yang telah disediakan**.',
+                '**Pentingnya Akses:** Hal ini memastikan seluruh pegawai memiliki transparansi dan akses mudah terhadap dokumen penting terkait inisiatif ZI.'
+            ]
+        }
+    };
+
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            // Remove active class and glow from all cards
+            cards.forEach(c => {
+                c.classList.remove('active');
+                c.classList.remove('glow');
+            });
+
+            // Add active class and glow to the clicked card
+            card.classList.add('active');
+            card.classList.add('glow');
+
+            // Get the data for the selected program
+            const programKey = card.dataset.program;
+            const data = programData[programKey];
+
+            // Update info panel content
+            infoTitle.textContent = data.title;
+            infoDescription.textContent = data.description;
+            infoDetails.innerHTML = '';
+            data.details.forEach(item => {
+                const li = document.createElement('li');
+                li.innerHTML = item;
+                infoDetails.appendChild(li);
+            });
+
+            // Show the info panel
+            infoPanel.classList.add('show');
+        });
+    });
+</script>
+
+</body>
+</html>
